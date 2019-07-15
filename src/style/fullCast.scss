@@ -1,0 +1,157 @@
+@import "definition.scss";
+.full-cast-display {
+  opacity: 1;
+  position: absolute;
+  text-align: center;
+  display: block;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  margin: 4rem auto auto auto;
+  width: 100%;
+  transition: 1.5s;
+  background: color(primaryM);
+  @include tablet {
+    margin: 4rem auto auto auto;
+  }
+  .heading {
+    width: 100%;
+    margin-top: 4rem;
+    background: color(white);
+    .close {
+      color: color(white);
+      position: absolute;
+      z-index: 99;
+      right: 2rem;
+      top: 2rem;
+      font-size: 2.2rem;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        color: color(secondaryM);
+        transform: rotate(90deg);
+      }
+      @include mobile {
+        left: 1rem;
+        top: 0.5rem;
+        font-size: 2rem;
+      }
+    }
+    .fixed-small-info {
+      top: 4rem;
+    }
+  }
+  .casting {
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    text-align: center;
+    margin: auto;
+    align-items: center;
+    background: color(white);
+    padding-left: 1rem;
+    @include mobile {
+      width: unset;
+      margin: 1rem auto;
+    }
+    img {
+      height: 200px;
+      border-radius: 4px;
+      max-width: 133.5px;
+      transition: 0.2s;
+      cursor: pointer;
+      &:hover {
+        box-shadow: 0px 1px 15px color(secondaryM);
+      }
+    }
+    p {
+      display: inline-block;
+      color: color(primaryM);
+    }
+    .castName {
+      margin-left: 1.5rem;
+      font-size: 1.2rem;
+    }
+    .role {
+      opacity: 0.7;
+      padding-left: 1rem;
+    }
+  }
+  .casting-crew {
+    background: color(white);
+    width: 50%;
+    margin: auto;
+    padding: 0.5rem;
+    @include mobile {
+      width: unset;
+    }
+    p {
+      display: inline-block;
+      &:nth-child(2n) {
+        margin: 1rem;
+      }
+    }
+  }
+  .spanTitle {
+    padding-top: 1.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.09rem;
+    word-spacing: 0.2rem;
+    @include mobile {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.full-cast-tv {
+  background: color(secondaryT) !important;
+  .close {
+    color: color(white) !important;
+    &:hover {
+      color: color(primaryT) !important;
+    }
+  }
+  .date {
+    color: color(primaryT) !important;
+  }
+  img:hover {
+    box-shadow: 0px 1px 15px color(primaryT) !important;
+  }
+}
+
+/*___________________________________________________OVO IMPLEMENTIRATI*/
+.backToTop {
+  position: fixed;
+  bottom: 0%;
+  right: 5%;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  background: color(white);
+  border: 1px color(primaryM) solid;
+  transition: 0.3s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.backToTop a i {
+  font-size: 2rem;
+  margin-top: 0.1rem;
+  color: color(primaryM);
+}
+
+.backToTop:hover {
+  background: color(primaryM);
+  transform: rotateZ(360deg);
+}
+
+.backToTop:hover a i {
+  color: color(secondaryM);
+}
+
+.topShow {
+  bottom: 5%;
+  opacity: 1;
+  visibility: visible;
+}

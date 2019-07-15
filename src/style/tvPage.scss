@@ -1,0 +1,178 @@
+@import "definition.scss";
+
+.tv-page {
+  .whiteT {
+    color: color(white) !important;
+  }
+  .mtv-info {
+    background: color(secondaryT) !important;
+    .mtv-progress-bar-container {
+      border: 2px color(white) solid !important;
+    }
+    .mtv-date {
+      color: color(primaryT);
+    }
+    .mtv-details {
+      p:nth-child(1),
+      p:nth-child(2) {
+        border-right: 1px color(primaryT) solid !important;
+      }
+    }
+    .mtv-air-date {
+      float: right;
+      margin: 1.8rem 2.5rem auto auto;
+      font-size: 0.9rem;
+      color: color(primaryT);
+
+      span {
+        font-weight: 400;
+        font-size: 0.8rem;
+        color: color(white);
+        opacity: 0.8;
+      }
+    }
+  }
+  .mtv-credits {
+    background: rgba(253, 255, 255, 0.9) !important;
+    .mtv-casting-container {
+      .mtv-cast-member {
+        box-shadow: 1px 1px 3px color(secondaryT) !important;
+        &:hover {
+          box-shadow: 2px 2px 25px color(primaryT) !important;
+        }
+      }
+    }
+
+    .mtv-casting-container::-webkit-scrollbar-thumb {
+      border: 1px color(primaryT) solid !important;
+      background: color(secondaryT);
+    }
+
+    .full-cast-btn {
+      background: color(secondaryT) !important;
+      color: color(primaryT) !important;
+      &:hover {
+        background: color(primaryT) !important;
+        color: color(secondaryT) !important;
+      }
+    }
+  }
+  .tv-page-seasons {
+    background: color(secondaryT);
+    position: relative;
+    border-radius: 0 0 15px 15px;
+    .tv-page-season-flex {
+      list-style: none;
+      display: flex;
+      width: 95%;
+      flex-direction: row;
+      text-align: center;
+      margin: auto;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      li {
+        display: inline-block;
+        padding: 0.8rem;
+        cursor: pointer;
+        margin-bottom: 0.3rem;
+      }
+
+      .active-season {
+        border-bottom: 2px color(primaryT) solid;
+        color: color(primaryT);
+        transition: 0.2s;
+      }
+    }
+    .seasons-episodes-flex {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 65%;
+      margin: 1rem auto 0 auto;
+      padding-bottom: 1rem;
+
+      @include mobile {
+        display: block;
+      }
+
+      .season-poster {
+        max-width: 300px;
+        max-height: 450px;
+        margin-left: 1rem;
+        height: 90%;
+        border: 1px color(primaryT) solid;
+        box-shadow: 0px 0px 25px color(primaryT);
+
+        @include mobile {
+          margin-left: unset;
+          max-height: 225px;
+          max-width: unset;
+        }
+      }
+
+      .episode-list {
+        margin: auto;
+        text-align: left;
+
+        ul {
+          margin-top: 1.5rem;
+          list-style: none;
+        }
+      }
+    }
+  }
+  .mtv-more-details {
+    border: 2px color(secondaryT) solid !important;
+    .imdb-btn {
+      background: color(secondaryT) !important;
+      color: color(primaryT) !important;
+      &:hover {
+        color: #deb522 !important;
+      }
+    }
+    .homepage-btn {
+      background: color(secondaryT) !important;
+      border: 1px color(secondaryT) solid !important;
+      color: color(primaryT) !important;
+      &:hover {
+        color: color(secondaryT) !important;
+        background: color(primaryT) !important;
+      }
+    }
+    .tv-network {
+      filter: brightness(0) saturate(100%) invert(61%) sepia(73%)
+        saturate(4244%) hue-rotate(331deg) brightness(98%) contrast(92%);
+      width: 200px;
+    }
+  }
+  .mtv-similar-titles {
+    border-radius: 0;
+    padding-top: 0.5rem;
+    background: color(primaryT) !important;
+    .highlight {
+      border: 2px color(secondaryT) solid !important;
+    }
+    .title-similar {
+      color: color(secondaryT) !important;
+      border: 1px color(secondaryT) solid !important;
+    }
+    h3 {
+      padding: 0.8rem;
+    }
+    .fa-star {
+      color: color(primaryT);
+      cursor: pointer;
+      position: absolute;
+      margin-top: 6.3rem;
+      font-size: 1.2rem;
+    }
+  }
+  .grid-similar::-webkit-scrollbar-thumb {
+    background: color(secondaryT) !important;
+  }
+  .grid-similar::-webkit-scrollbar-track {
+    background: color(primaryT) !important;
+  }
+}

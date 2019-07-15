@@ -1,0 +1,185 @@
+@import "definition.scss";
+.account-background {
+  content: "";
+  top: 0;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background: color(primaryM);
+  transition: 0.5s;
+  z-index: -5;
+}
+.account-page {
+  width: 100%;
+  height: calc(100vh - 7.3rem - 3px - 4.5rem);
+  margin-top: 4.5rem;
+  box-sizing: border-box;
+
+  .account-container {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 800px;
+    max-width: 100%;
+    min-height: 500px;
+    background: color(white);
+    margin: auto;
+    box-shadow: 0 5px 20px black;
+
+    p {
+      padding: 1rem 0;
+      font-size: 14px;
+    }
+    h2 {
+      margin: 1rem auto;
+    }
+    a {
+      font-size: 13px;
+      font-style: italic;
+      margin: 1rem auto;
+      transition: 0.2s ease-out;
+      &:hover {
+        letter-spacing: 2px;
+      }
+    }
+    button {
+      border-radius: 1.2rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 10px 45px;
+      margin-top: 15px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: transform 80ms ease-in;
+      cursor: pointer;
+      &:active {
+        transform: scale(0.9);
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    .form-container {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      transition: all 0.5s ease-in-out;
+
+      form {
+        background: color(white);
+        display: flex;
+        flex-direction: column;
+        padding: 0 3rem;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        input {
+          text-align: center;
+          font-style: italic;
+          color: color(primaryM);
+          background: transparent;
+          padding: 10px 15px;
+          width: 100%;
+          margin: 10px 0;
+          border: unset;
+          border-radius: 8px;
+          border-bottom: 1px color(secondaryM) solid;
+          &:focus {
+            outline: none;
+          }
+        }
+
+        button {
+          border: 1px color(primaryM) solid;
+          background: color(primaryM);
+          color: color(white);
+        }
+      }
+    }
+    .form-container.log-in-container {
+      left: 0;
+      width: 50%;
+      z-index: 2;
+    }
+    .form-container.sign-up-container {
+      left: 0;
+      width: 50%;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .overlay-container {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 100;
+      transition: transform 0.5s ease-in-out;
+
+      .overlay {
+        position: relative;
+        height: 100%;
+        width: 200%;
+        left: -100%;
+        color: color(white);
+        background: linear-gradient(to right, color(primaryM), #2b5e91)
+          no-repeat 0 0 / cover;
+        transition: transform 0.5s ease-in-out;
+
+        .overlay-panel {
+          position: absolute;
+          top: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 50%;
+          text-align: center;
+          transition: 0.5s ease-in-out;
+
+          .btn-contrast {
+            background: transparent;
+            border-color: color(secondaryM);
+            color: color(white);
+          }
+        }
+        .overlay-panel.panel-left {
+          right: 0;
+        }
+        .overlay-panel.panel-right {
+          transform: translateX(-20%);
+        }
+      }
+    }
+  }
+}
+
+/*ANIMATION*/
+
+.account-container.right-panel-active {
+  .log-in-container {
+    transform: translateX(100%) !important;
+  }
+  .overlay-container {
+    transform: translateX(-100%) !important;
+    .overlay {
+      transform: translateX(50%) !important;
+      .panel-right {
+        transform: translateX(0) !important;
+      }
+      .panel-left {
+        transform: translateX(20%) !important;
+      }
+    }
+  }
+  .sign-up-container {
+    transform: translateX(100%) !important;
+    opacity: 1 !important;
+    z-index: 2 !important;
+  }
+}

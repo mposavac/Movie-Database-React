@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+$colors: (
+  primaryM: #05386b,
+  secondaryM: #5cdb95,
+  primaryT: #f1614b,
+  secondaryT: #0b0c10,
+  primaryP: #65ccb8,
+  grey: grey,
+  white: #fff
+);
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+@mixin gradient-background($color-name, $aplha) {
+  background: linear-gradient(
+      to right,
+      color($color-name),
+      desaturate(lighten(color($color-name), $aplha), $aplha)
+    )
+    no-repeat;
+}
+
+$desktop: 1210px;
+$tablet: 905px;
+$mobile: 695px;
+
+@mixin desktop {
+  @media (max-width: $desktop) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
