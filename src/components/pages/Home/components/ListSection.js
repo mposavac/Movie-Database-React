@@ -11,12 +11,20 @@ export default function ListSection(props) {
           <h4>{sectionsTitles[i]}</h4>
           <ul>
             {i === 0
-              ? props.inTheaters.results.map(element => (
-                  <ListMember key={element.id} movie={element} />
-                ))
-              : props.upcomingMovies.results.map(element => (
-                  <ListMember key={element.id} movie={element} />
-                ))}
+              ? props.inTheaters.results
+                  .filter((element, j) => {
+                    return j < 7;
+                  })
+                  .map(element => (
+                    <ListMember key={element.id} movie={element} />
+                  ))
+              : props.upcomingMovies.results
+                  .filter((element, j) => {
+                    return j < 7;
+                  })
+                  .map(element => (
+                    <ListMember key={element.id} movie={element} />
+                  ))}
           </ul>
         </article>
       ))}

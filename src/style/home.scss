@@ -248,7 +248,7 @@ main.home-background::after {
     padding: 0.5rem;
     border-radius: 15px;
     margin: 0.2rem 1rem;
-    width: 30%;
+    width: 25%;
     @include mobile {
       width: 85%;
     }
@@ -259,33 +259,94 @@ main.home-background::after {
       li {
         margin: 0.2rem 0 0 0;
         color: black;
+        height: 100px;
+        display: flex;
         transition: 0.3s;
-        &:hover {
-          transform: translateX(10px);
-          color: color(primaryM);
+        box-sizing: border-box;
+        img {
+          height: 100%;
+          padding-right: 0.5rem;
         }
-        span {
-          font-size: 0.8rem;
-          opacity: 0.6;
-          margin-left: 1rem;
+        .title {
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          width: calc(100% - 100px - 0.5rem);
+          vertical-align: top;
+          transition: 0.3s;
+          p {
+            font-size: 1.1rem;
+          }
+          span {
+            font-size: 0.9rem;
+            opacity: 0.7;
+          }
+        }
+        &:hover {
+          .title {
+            transform: translateX(15px);
+            color: color(secondaryM);
+          }
+          background: color(primaryM);
         }
       }
     }
 
     h4 {
+      position: relative;
       text-align: center;
       color: color(primaryM);
+      transition: 0.3s;
+      padding-bottom: 0.5rem;
+      &::after {
+        content: " ";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        background: color(primaryM);
+        height: 2px;
+        width: 0%;
+        transform-origin: center;
+        transition: 0.3s;
+      }
+    }
+    &:hover {
+      h4 {
+        letter-spacing: 12px;
+        &::after {
+          width: 100%;
+          left: 0%;
+        }
+      }
     }
   }
 }
 
 .best-of-tv {
   text-align: center;
+  h2 {
+    position: relative;
+    display: inline;
+    margin: auto;
+    padding: 0 0.25rem 0.5rem 0.25rem;
 
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: "";
+      height: 2px;
+      background: color(primaryT);
+      width: 62%;
+      transition: 0.3s;
+    }
+  }
   .hometv-grid {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin: 1.75rem auto;
     @include tablet {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -297,6 +358,18 @@ main.home-background::after {
       width: 211.4px;
       margin: 0.5rem;
       border-radius: 3px;
+      &::after {
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 100;
+        transition: 0.3s;
+      }
       @include desktop {
         height: 200px;
         width: 150.4px;
@@ -305,24 +378,63 @@ main.home-background::after {
       img {
         height: 100%;
         border-radius: 8px;
+        z-index: 1;
+        transition: 0.2s;
       }
 
       .tv-title {
         position: absolute;
-        bottom: 10%;
-        left: 20%;
-        transform: translate(-50%, -50%);
-        padding: 1rem;
-        background: color(white);
-        border-radius: 10px;
+        bottom: 40%;
+        left: 0;
+        color: color(white);
         opacity: 0;
+        width: 100%;
         font-style: italic;
         font-weight: bold;
+        z-index: 1500;
         transition: 0.2s;
+        transform: rotateX(90deg);
+        box-sizing: border-box;
+        letter-spacing: 2px;
       }
-      &:hover .tv-title {
-        opacity: 0.8;
+      .tv-vote,
+      .tv-date {
+        position: absolute;
+        color: color(secondaryT);
+        width: 100%;
+        left: 0;
+        opacity: 0;
+        transition: 0.3s;
       }
+      .tv-vote {
+        bottom: 0px;
+      }
+      .tv-date {
+        top: 0px;
+      }
+      &:hover {
+        &::after {
+          opacity: 1;
+        }
+        .tv-title {
+          bottom: 50%;
+          transform: rotateX(0deg);
+          opacity: 1;
+        }
+        .tv-vote {
+          opacity: 1;
+          bottom: -20px;
+        }
+        .tv-date {
+          opacity: 1;
+          top: -20px;
+        }
+      }
+    }
+  }
+  &:hover {
+    h2::after {
+      width: 100%;
     }
   }
 }

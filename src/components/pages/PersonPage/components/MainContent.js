@@ -10,7 +10,7 @@ export default function MainContent(props) {
     <section
       className="person-container"
       onClick={fullBioShown ? props.handleClickBio : undefined}
-      style={fullBioShown ? { filter: "blur(15px)" } : {}}
+      style={fullBioShown ? { filter: "blur(3px)", opacity: "0.5" } : {}}
     >
       <BasicInfo
         person={personData}

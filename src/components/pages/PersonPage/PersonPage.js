@@ -35,10 +35,10 @@ export class PersonPage extends Component {
             />
           </React.Fragment>
         )}
-
-        {fullBioShown && (
+        {personData && (
           <FullBioDisplay
             biography={personData.biography}
+            fullBioShown={fullBioShown}
             onClick={this.handleClickBio}
           />
         )}

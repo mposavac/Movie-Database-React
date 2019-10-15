@@ -312,6 +312,11 @@ footer {
     bottom: -0.7rem;
     left: -6.5rem;
     transform: scale(0.4);
+    @include mobile {
+      transform: scale(0.2);
+      bottom: -2.6rem;
+      left: -10rem;
+    }
   }
 }
 
