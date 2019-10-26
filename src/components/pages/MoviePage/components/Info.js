@@ -12,6 +12,17 @@ export default function Info(props) {
       <h4 className="mtv-date">
         ( {props.movie.release_date.substring(0, 4)} )
       </h4>
+      {props.isLogged && (
+        <i
+          className="far fa-heart"
+          onClick={props.handleClick}
+          style={
+            props.isFavourite
+              ? { fontWeight: "900", color: "orange" }
+              : { fontWeight: "400", color: "red" }
+          }
+        />
+      )}
       <p className="mtv-description">{props.movie.overview}</p>
       <div className="mtv-details">
         <p className="mtv-rated">{props.movie.adult ? "R" : "PG"}</p>

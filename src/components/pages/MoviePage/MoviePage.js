@@ -3,6 +3,10 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { movieFetch } from "../../../store/actions/movieActions";
+import {
+  addFavourite,
+  removeFavourite
+} from "../../../store/actions/authActions";
 
 import Loading from "../../Loading";
 import MainContent from "./components/MainContent";
@@ -57,6 +61,19 @@ export class MoviePage extends Component {
   handleChangeHighlight = highlightIndex => {
     this.props.highlightChange(highlightIndex);
   };
+  handleFavourite = () => {
+    if (this.checkIfFavourite())
+      this.props.removeFavourite(this.props.movieData.movie.id);
+    else this.props.addFavourite(this.props.movieData);
+  };
+  checkIfFavourite = () => {
+    if (this.props.isLogged) {
+      for (let favourite of this.props.favourites)
+        if (favourite.id === this.props.movieData.movie.id) return true;
+
+      return false;
+    }
+  };
   render() {
     const { movie, cast, similar, isLoading } = this.props.movieData;
     return (
@@ -70,8 +87,11 @@ export class MoviePage extends Component {
           movie && (
             <MainContent
               data={this.props.movieData}
+              isLogged={this.props.isLogged}
+              isFavourite={this.checkIfFavourite()}
               handleClickCast={this.handleClickCast}
               handleChangeHighlight={this.handleChangeHighlight}
+              handleFavouriteClick={this.handleFavourite}
             />
           )
         )}
@@ -82,7 +102,9 @@ export class MoviePage extends Component {
 const mapStateToProps = state => {
   console.log("MOVIE state", state);
   return {
-    movieData: state.movie
+    movieData: state.movie,
+    isLogged: state.firebase.auth.uid ? true : false,
+    favourites: state.auth.favourites
   };
 };
 
@@ -94,7 +116,9 @@ const mapStateToDispatch = dispatch => {
     fixSmallTite: () => dispatch({ type: "FIX_SMALL" }),
     fullCast: () => dispatch({ type: "FULL_CAST" }),
     highlightChange: highlightIndex =>
-      dispatch({ type: "HIGHTLIGHT_CHANGE", data: highlightIndex })
+      dispatch({ type: "HIGHTLIGHT_CHANGE", data: highlightIndex }),
+    addFavourite: movieData => dispatch(addFavourite(movieData)),
+    removeFavourite: movieId => dispatch(removeFavourite(movieId))
   };
 };
 

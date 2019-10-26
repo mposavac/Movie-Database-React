@@ -23,7 +23,13 @@ export default function MainContent(props) {
       {!fullCastShown && (
         <main className="mtv-page movie-container">
           <MtvImgCont movie={movie} indicator={indicator} fixSmall={fixSmall} />
-          <Info movie={movie} ratingLoaded={ratingLoaded} />
+          <Info
+            movie={movie}
+            ratingLoaded={ratingLoaded}
+            handleClick={props.handleFavouriteClick}
+            isLogged={props.isLogged}
+            isFavourite={props.isFavourite}
+          />
           <Casting cast={cast} onClick={props.handleClickCast} />
           <MoreDeatils movie={movie} />
           {similar.results.length !== 0 && (

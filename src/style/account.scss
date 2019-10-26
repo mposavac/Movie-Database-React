@@ -53,7 +53,7 @@
       transition: transform 80ms ease-in;
       cursor: pointer;
       &:active {
-        transform: scale(0.9);
+        transform: scale(0.8);
       }
       &:focus {
         outline: none;
@@ -92,6 +92,7 @@
         }
 
         button {
+          transition: 0.5s;
           border: 1px color(primaryM) solid;
           background: color(primaryM);
           color: color(white);
@@ -102,6 +103,15 @@
       left: 0;
       width: 50%;
       z-index: 2;
+
+      .error-msg {
+        color: color(primaryT);
+        transition: 0.5s;
+        transform: translateY(50%);
+        &.error-msg-anim {
+          transform: translateY(0%);
+        }
+      }
     }
     .form-container.sign-up-container {
       left: 0;
@@ -153,6 +163,34 @@
         }
         .overlay-panel.panel-right {
           transform: translateX(-20%);
+        }
+      }
+    }
+  }
+
+  .user-profile {
+    width: 75%;
+    height: 80vh;
+    background: white;
+    margin: auto;
+    overflow: hidden;
+    .container {
+      padding: 0.5rem;
+      height: 100%;
+      overflow-y: scroll;
+
+      .favourites-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+        .favourite {
+          margin: 0 auto 0.75rem auto;
+          text-align: center;
+          width: 150px;
+          overflow: hidden;
+          img {
+            width: 100%;
+          }
         }
       }
     }

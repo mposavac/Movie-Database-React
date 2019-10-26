@@ -3,6 +3,10 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { tvFetch, seasonChange } from "../../../store/actions/tvActions";
+import {
+  addFavourite,
+  removeFavourite
+} from "../../../store/actions/authActions";
 
 import Loading from "../../Loading";
 import MainContent from "./components/MainContent";
@@ -63,6 +67,21 @@ export class TvPage extends Component {
     this.props.highlightChange(highlightIndex);
   };
 
+  handleFavourite = () => {
+    if (this.checkIfFavourite())
+      this.props.removeFavourite(this.props.tvData.tv.id);
+    else this.props.addFavourite(this.props.tvData);
+  };
+
+  checkIfFavourite = () => {
+    if (this.props.isLogged) {
+      for (let favourite of this.props.favourites)
+        if (favourite.id === this.props.tvData.tv.id) return true;
+
+      return false;
+    }
+  };
+
   render() {
     const { tv, cast, similar, isLoading } = this.props.tvData;
     return (
@@ -76,9 +95,12 @@ export class TvPage extends Component {
           tv && (
             <MainContent
               data={this.props.tvData}
+              isLogged={this.props.isLogged}
+              isFavourite={this.checkIfFavourite()}
               handleClickCast={this.handleClickCast}
               handleClickSeason={this.handleClickSeason}
               handleChangeHighlight={this.handleChangeHighlight}
+              handleFavouriteClick={this.handleFavourite}
             />
           )
         )}
@@ -90,7 +112,9 @@ export class TvPage extends Component {
 const mapStateToProps = state => {
   console.log("TV state", state);
   return {
-    tvData: state.tv
+    tvData: state.tv,
+    isLogged: state.firebase.auth.uid ? true : false,
+    favourites: state.auth.favourites
   };
 };
 
@@ -103,7 +127,9 @@ const mapStateToDispatch = dispatch => {
     fixSmallTite: () => dispatch({ type: "FIX_SMALL" }),
     fullCast: () => dispatch({ type: "FULL_CAST" }),
     highlightChange: highlightIndex =>
-      dispatch({ type: "HIGHTLIGHT_CHANGE", data: highlightIndex })
+      dispatch({ type: "HIGHTLIGHT_CHANGE", data: highlightIndex }),
+    addFavourite: tvData => dispatch(addFavourite(tvData)),
+    removeFavourite: tvId => dispatch(removeFavourite(tvId))
   };
 };
 export default connect(

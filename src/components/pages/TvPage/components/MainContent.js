@@ -28,7 +28,13 @@ export default function MainContent(props) {
       {!fullCastShown && (
         <main className="mtv-page tv-page" onScroll={props.handleScroll}>
           <MtvImgCont tv={tv} indicator={indicator} fixSmall={fixSmall} />
-          <Info tv={tv} ratingLoaded={ratingLoaded} />
+          <Info
+            tv={tv}
+            ratingLoaded={ratingLoaded}
+            handleClick={props.handleFavouriteClick}
+            isLogged={props.isLogged}
+            isFavourite={props.isFavourite}
+          />
           <Casting
             cast={cast}
             created={tv.created_by}

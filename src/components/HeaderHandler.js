@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
 import Header from "./Header";
 
 export class HeaderHandler extends Component {
@@ -20,6 +20,7 @@ export class HeaderHandler extends Component {
     return (
       <Header
         shown={this.state.sideMenuShown}
+        isLogged={this.props.isLogged}
         handleMenuClick={this.handleMenuClick}
         hideMenu={this.setStateToFalse}
         menuColor={this.props.location.pathname.substring(1, 3)}
@@ -27,5 +28,10 @@ export class HeaderHandler extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    isLogged: state.firebase.auth.uid ? true : false
+  };
+};
 
-export default HeaderHandler;
+export default connect(mapStateToProps)(HeaderHandler);

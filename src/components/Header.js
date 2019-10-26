@@ -2,7 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Header(props) {
-  const navigation = ["POPULAR", "TOP RATED", "TV SHOWS", "ACCOUNT"];
+  const navigation = ["POPULAR", "TOP RATED", "TV SHOWS"];
+  if (props.isLogged) navigation.push("ACCOUNT");
+  else navigation.push("LOGIN");
   const path = ["/popular", "/topRated", "/tvShows", "/account"];
   return (
     <header

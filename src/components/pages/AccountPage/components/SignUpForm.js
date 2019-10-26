@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
+import { signUp } from "../../../../store/actions/authActions";
+
+//import GoogleLogin from "react-google-login";
 
 export class SignIn extends Component {
   state = {
@@ -21,10 +24,13 @@ export class SignIn extends Component {
     if (this.state.password !== this.state.passwordRepeat) {
       console.log("IZBACITI ERROR za sifre");
     } else {
-      console.log("NAPRAVLJEN RACUN");
+      this.props.signUp(this.state);
     }
   };
 
+  resposneGoogle = response => {
+    console.log(response);
+  };
   render() {
     //console.log(this.state);
     return (
@@ -37,7 +43,7 @@ export class SignIn extends Component {
             placeholder="Username"
             id="user"
             required
-            pattern="[A-Za-z0-9].{5,}"
+            pattern="[A-Za-z0-9].{4,}"
             onChange={this.handleChange}
           />
           <input
@@ -77,7 +83,9 @@ const mapStateToProps = state => {
 };
 
 const mapStateToDispatch = dispatch => {
-  return {};
+  return {
+    signUp: newUser => dispatch(signUp(newUser))
+  };
 };
 
 export default connect(

@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
+import { signIn } from "../../../../store/actions/authActions";
 
 export class Login extends Component {
   state = {
-    userName: "",
+    email: "",
     password: ""
   };
   handleChange = event => {
@@ -15,7 +16,7 @@ export class Login extends Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    //TODO: this.props.login(this.state)
+    this.props.signIn(this.state);
   };
 
   render() {
@@ -26,7 +27,7 @@ export class Login extends Component {
           <h2>Log in</h2>
           <input
             type="text"
-            name="userName"
+            name="email"
             placeholder="Username or e-mail"
             id="userLogin"
             required
@@ -43,7 +44,20 @@ export class Login extends Component {
             onChange={this.handleChange}
           />
           <Link to="/error">Forgot your password?</Link>
-          <button type="submit">Log in</button>
+          <div
+            className={
+              this.props.authStatus === "Login failed"
+                ? "error-msg error-msg-anim"
+                : "error-msg"
+            }
+          >
+            {this.props.authStatus === "Login failed" && (
+              <p>{this.props.authStatus}</p>
+            )}
+          </div>
+          <button type="submit" className="btn login-btn">
+            Log in
+          </button>
         </form>
       </section>
     );
@@ -53,12 +67,14 @@ export class Login extends Component {
 const mapStateToProps = state => {
   console.log("LOGIN", state);
   return {
-    auth: state.firebase.auth
+    authStatus: state.auth.status
   };
 };
 
 const mapStateToDispatch = dispatch => {
-  return {};
+  return {
+    signIn: userData => dispatch(signIn(userData))
+  };
 };
 
 export default connect(

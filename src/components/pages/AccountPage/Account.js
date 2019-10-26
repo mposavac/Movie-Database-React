@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import Login from "./components/LoginForm";
 import SignUp from "./components/SignUpForm";
 import OverlayMsg from "./components/OverlayMsg";
+import UserFavourites from "./components/UserFavourites";
 
 export class Account extends Component {
   state = {
-    isLogged: false,
     background: undefined,
     optionShowed: "login"
   };
@@ -27,11 +27,12 @@ export class Account extends Component {
     else this.setState({ optionShowed: "login" });
   };
   render() {
-    const { isLogged, background, optionShowed } = this.state;
+    const { background, optionShowed } = this.state;
     const backgroundStyle = {
       background: `url(https://image.tmdb.org/t/p/original${background}) no-repeat center/cover`
     };
     document.title = "Account";
+
     return (
       <React.Fragment>
         <div
@@ -39,8 +40,8 @@ export class Account extends Component {
           style={background !== undefined ? backgroundStyle : undefined}
         />
         <div className="account-page">
-          {isLogged ? (
-            "BUILDING IN PROGRESS..."
+          {this.props.isLogged ? (
+            <UserFavourites />
           ) : (
             <div
               className={
@@ -59,7 +60,10 @@ export class Account extends Component {
   }
 }
 const mapStateToProps = state => {
-  return {};
+  console.log("ACCOUNT", state);
+  return {
+    isLogged: state.firebase.auth.uid ? true : false
+  };
 };
 
 const mapStateToDispatch = dispatch => {

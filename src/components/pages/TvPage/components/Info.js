@@ -15,6 +15,17 @@ export default function Info(props) {
       <h4 className="mtv-date">
         ( {props.tv.first_air_date.substring(0, 4)} )
       </h4>
+      {props.isLogged && (
+        <i
+          className="far fa-heart"
+          onClick={props.handleClick}
+          style={
+            props.isFavourite
+              ? { fontWeight: "900", color: "orange" }
+              : { fontWeight: "400", color: "red" }
+          }
+        />
+      )}
       <h4 className="mtv-air-date">
         {props.tv.next_episode_to_air === null ? (
           <span>Last episode: </span>
@@ -30,7 +41,9 @@ export default function Info(props) {
       <p className="mtv-description whiteT">{props.tv.overview}</p>
       <div className="mtv-details whiteT">
         <p className="mtv-tv">{props.tv.adult ? "R" : "PG"}</p>
-        <p className="mtv-run-time">{props.tv.episode_run_time} min</p>
+        <p className="mtv-run-time">
+          {props.tv.episode_run_time.join("-")} min
+        </p>
         <p className="mtv-category">
           {props.tv.genres.map(genres => genres.name).join(",  ")}
         </p>
