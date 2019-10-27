@@ -1,5 +1,4 @@
 const initState = {
-  isLoading: true,
   hotMovies: undefined,
   inTheaters: undefined,
   upcomingMovies: undefined,
@@ -18,7 +17,7 @@ const homeReducer = (state = initState, action) => {
     case "UPCOMING_RESPONSE":
       return { ...state, upcomingMovies: action.data };
     case "TVTRENDING_RESPONSE":
-      return { ...state, tvTrending: action.data, isLoading: false };
+      return { ...state, tvTrending: action.data };
     case "TYPING_ACTION":
       return { ...state, isTyping: !state.isTyping };
     case "SEARCH_QUERY":

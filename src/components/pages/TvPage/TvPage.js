@@ -40,7 +40,7 @@ export class TvPage extends Component {
     if (
       window.pageYOffset > 155 &&
       !this.props.tvData.ratingLoaded &&
-      !this.props.tvData.isLoading
+      this.props.tvData.tv !== undefined
     )
       this.props.loadRating();
 
@@ -83,26 +83,24 @@ export class TvPage extends Component {
   };
 
   render() {
-    const { tv, cast, similar, isLoading } = this.props.tvData;
+    const { tv, cast, similar } = this.props.tvData;
     return (
       <React.Fragment>
-        <Loading color={"tv"} isLoading={isLoading} />
+        <Loading color={"tv"} isLoading={tv ? false : true} />
         {tv && tv.status_code ? (
           <Redirect to="/error" />
+        ) : similar && cast && tv ? (
+          <MainContent
+            data={this.props.tvData}
+            isLogged={this.props.isLogged}
+            isFavourite={this.checkIfFavourite()}
+            handleClickCast={this.handleClickCast}
+            handleClickSeason={this.handleClickSeason}
+            handleChangeHighlight={this.handleChangeHighlight}
+            handleFavouriteClick={this.handleFavourite}
+          />
         ) : (
-          similar &&
-          cast &&
-          tv && (
-            <MainContent
-              data={this.props.tvData}
-              isLogged={this.props.isLogged}
-              isFavourite={this.checkIfFavourite()}
-              handleClickCast={this.handleClickCast}
-              handleClickSeason={this.handleClickSeason}
-              handleChangeHighlight={this.handleChangeHighlight}
-              handleFavouriteClick={this.handleFavourite}
-            />
-          )
+          <div style={{ minHeight: "100vh" }} />
         )}
       </React.Fragment>
     );

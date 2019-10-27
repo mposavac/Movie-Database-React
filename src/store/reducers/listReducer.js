@@ -1,6 +1,5 @@
 const initState = {
   indicator: "",
-  isLoading: true,
   list: undefined
 };
 
@@ -10,7 +9,6 @@ const listReducer = (state = initState, action) => {
       return {
         ...state,
         list: action.data,
-        isLoading: false,
         indicator: action.indicator
       };
     case "LIST_ERROR":

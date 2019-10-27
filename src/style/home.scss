@@ -6,6 +6,7 @@ main.home-background::after {
   z-index: -5;
   background: radial-gradient(color(primaryM), transparent);
   width: 100%;
+  min-height: 100vh;
   height: 110%;
   content: "";
   opacity: 0.5;
@@ -23,16 +24,17 @@ main.home-background::after {
   box-shadow: -10px 10px 50px black;
   margin-top: 4.5rem;
   overflow: hidden;
+  max-height: 80vh;
   animation: fadingIn 0.4s ease-out;
 
   @keyframes fadingIn {
     0% {
       opacity: 0.1;
-      transform: translateY(10rem);
+      transform: translateY(10rem) scale(0.75);
     }
     100% {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
   }
 

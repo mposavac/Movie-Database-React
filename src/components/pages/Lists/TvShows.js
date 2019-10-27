@@ -28,10 +28,10 @@ export class TvShows extends Component {
   }
   render() {
     document.title = "Best of TV";
-    const { list: tv, indicator, isLoading } = this.props.listData;
+    const { list: tv, indicator } = this.props.listData;
     return (
       <React.Fragment>
-        <Loading color={"tv"} isLoading={isLoading} />
+        <Loading color={"tv"} isLoading={tv ? false : true} />
         {indicator === "/tvShows" && (
           <section className="list-grid-container list-tv-shows">
             {tv &&

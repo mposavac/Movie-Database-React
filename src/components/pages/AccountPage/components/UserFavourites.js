@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { signOut, getFavourites } from "../../../../store/actions/authActions";
+import { getFavourites } from "../../../../store/actions/authActions";
 
 export class UserFavourites extends Component {
   componentDidMount() {
@@ -11,8 +11,22 @@ export class UserFavourites extends Component {
   render() {
     return (
       <div className="user-profile">
+        <div className="background">
+          <div className="lines">
+            <div className="line"></div>
+            <div className="line"></div>
+            <div className="line"></div>
+          </div>
+        </div>
         <div className="container">
-          <button onClick={this.props.signOut}>LOG OUT</button>
+          <h2>This are your favourite titles</h2>
+          <select name="sort" id="sort">
+            <option value="Random">Random</option>
+            <option value="Name">Name</option>
+            <option value="Rating">Rating</option>
+            <option value="Year">Year</option>
+          </select>
+          <hr />
           <div className="favourites-grid">
             {this.props.favourites &&
               this.props.favourites.map(element => (
@@ -26,7 +40,7 @@ export class UserFavourites extends Component {
                       alt="noImg"
                     />
                     <h5 className="title">
-                      {element.title} <span>{element.release_date}</span>
+                      {element.title} <span>({element.release_date})</span>
                     </h5>
                   </Link>
                 </div>
@@ -44,7 +58,6 @@ const mapStateToProps = state => {
 };
 const mapStateToDispatch = dispatch => {
   return {
-    signOut: () => dispatch(signOut()),
     getFavourites: () => dispatch(getFavourites())
   };
 };

@@ -31,19 +31,24 @@ export class Home extends Component {
       hotMovies,
       inTheaters,
       upcomingMovies,
-      tvTrending,
-      isLoading
+      tvTrending
     } = this.props.homeData;
     document.title = "The MDB";
+    console.log(this.props.homeData.tvTrending);
     return (
       <React.Fragment>
-        <Loading color={"mo"} isLoading={isLoading} />
-        {hotMovies && inTheaters && upcomingMovies && tvTrending && (
+        <Loading
+          color={"mo"}
+          isLoading={this.props.homeData.tvTrending ? false : true}
+        />
+        {hotMovies && inTheaters && upcomingMovies && tvTrending ? (
           <MainContent
             data={this.props.homeData}
             onChange={this.handleChangeSearch}
             onFocus={this.handleFocus}
           />
+        ) : (
+          <div style={{ height: "100vh" }}></div>
         )}
       </React.Fragment>
     );

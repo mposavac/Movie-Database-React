@@ -6,9 +6,9 @@ export default function Loading(props) {
     <Transition
       native
       items={props.isLoading}
-      from={{ opacity: 1 }}
-      enter={{ opacity: 1 }}
-      leave={{ opacity: 0 }}
+      from={{ opacity: 1, zIndex: "100", position: "relative" }}
+      enter={{ opacity: 1, zIndex: "100", position: "relative" }}
+      leave={{ opacity: 0, zIndex: "100", position: "relative" }}
     >
       {show =>
         show &&

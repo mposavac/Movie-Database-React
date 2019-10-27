@@ -21,11 +21,11 @@ export class PersonPage extends Component {
     this.props.fullBioAction(this.props.person.fullBioShown);
   };
   render() {
-    const { personData, isLoading, fullBioShown } = this.props.person;
+    const { personData, fullBioShown } = this.props.person;
     console.log(this.props);
     return (
       <React.Fragment>
-        <Loading color={"pe"} isLoading={isLoading} />
+        <Loading color={"pe"} isLoading={personData ? false : true} />
         {personData && (
           <React.Fragment>
             <div className="person-background" />

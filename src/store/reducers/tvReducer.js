@@ -1,6 +1,5 @@
 const initState = {
   indicator: "tv",
-  isLoading: true,
   ratingLoaded: false,
   activeSeason: 1,
   tv: undefined,
@@ -23,7 +22,7 @@ const tvReducer = (state = initState, action) => {
     case "CAST_ERROR":
       return state;
     case "SIMILAR_RESPONSE":
-      return { ...state, similar: action.data, isLoading: false };
+      return { ...state, similar: action.data };
     case "SIMILAR_ERROR":
       return state;
     case "SEASON_RESPONSE":

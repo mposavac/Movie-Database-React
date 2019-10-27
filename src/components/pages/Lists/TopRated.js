@@ -27,10 +27,10 @@ export class TopRated extends Component {
   }
   render() {
     document.title = "Top Rated";
-    const { list: movie, indicator, isLoading } = this.props.listData;
+    const { list: movie, indicator } = this.props.listData;
     return (
       <React.Fragment>
-        <Loading color={"mo"} isLoading={isLoading} />
+        <Loading color={"mo"} isLoading={movie ? false : true} />
         {indicator === "/topRated" && (
           <section className="list-grid-container">
             {movie &&

@@ -13,6 +13,7 @@ import MainContent from "./components/MainContent";
 
 export class MoviePage extends Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     window.addEventListener("scroll", this.onScroll, false);
     const movieId = this.props.match.params.movieId;
     this.props.movieFetch(movieId);
@@ -28,7 +29,7 @@ export class MoviePage extends Component {
       this.props.movieData.movie &&
       String(this.props.movieData.movie.id) !== this.props.match.params.movieId
     ) {
-      window.scroll(0, 0);
+      window.scrollTo(0, 0);
       const movieId = this.props.match.params.movieId;
       this.props.resetAction();
       this.props.movieFetch(movieId);
@@ -39,8 +40,9 @@ export class MoviePage extends Component {
   onScroll = () => {
     if (
       window.pageYOffset > 150 &&
+      window.pageYOffset < 350 &&
       !this.props.movieData.ratingLoaded &&
-      !this.props.movieData.isLoading
+      this.props.movieData.movie !== undefined
     )
       this.props.loadRating();
 
@@ -75,25 +77,23 @@ export class MoviePage extends Component {
     }
   };
   render() {
-    const { movie, cast, similar, isLoading } = this.props.movieData;
+    const { movie, cast, similar } = this.props.movieData;
     return (
       <React.Fragment>
-        <Loading color={"mo"} isLoading={isLoading} />
+        <Loading color={"mo"} isLoading={movie ? false : true} />
         {movie && movie.status_code ? (
           <Redirect to="/error" />
+        ) : similar && cast && movie ? (
+          <MainContent
+            data={this.props.movieData}
+            isLogged={this.props.isLogged}
+            isFavourite={this.checkIfFavourite()}
+            handleClickCast={this.handleClickCast}
+            handleChangeHighlight={this.handleChangeHighlight}
+            handleFavouriteClick={this.handleFavourite}
+          />
         ) : (
-          similar &&
-          cast &&
-          movie && (
-            <MainContent
-              data={this.props.movieData}
-              isLogged={this.props.isLogged}
-              isFavourite={this.checkIfFavourite()}
-              handleClickCast={this.handleClickCast}
-              handleChangeHighlight={this.handleChangeHighlight}
-              handleFavouriteClick={this.handleFavourite}
-            />
-          )
+          <div style={{ minHeight: "100vh" }} />
         )}
       </React.Fragment>
     );

@@ -21,10 +21,24 @@ export default function Header(props) {
           </NavLink>
         </div>
         <nav>
-          <ul>
+          <ul className="nav-ul">
             {navigation.map((element, i) => (
               <li key={i}>
-                <NavLink to={path[i]}>{element}</NavLink>
+                {element === "ACCOUNT" ? (
+                  <React.Fragment>
+                    {element}
+                    <ul>
+                      <li>
+                        <NavLink to={path[i]}>Account Page</NavLink>
+                      </li>
+                      <li>
+                        <button onClick={props.handleSignOut}>SIGN OUT</button>
+                      </li>
+                    </ul>
+                  </React.Fragment>
+                ) : (
+                  <NavLink to={path[i]}>{element}</NavLink>
+                )}
               </li>
             ))}
           </ul>

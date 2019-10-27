@@ -170,17 +170,29 @@ main.mtv-page {
         &:nth-child(2) {
           border-right: 1px color(primaryM) solid;
           margin-right: 0.3rem;
+          margin-left: 0.3rem;
           padding-right: 0.7rem;
+        }
+        &:nth-child(3) {
+          margin-left: 0.3rem;
         }
       }
     }
     i.fa-heart {
+      color: color(secondaryM);
       cursor: pointer;
-      transition: 0.5s;
+      transition: transform 0.2s, color 0.5s;
       margin-left: 1.5rem;
       font-size: 1.25rem;
       opacity: 0.8;
+      box-sizing: content-box;
       transform: translateY(2px);
+      &:active {
+        transform: scale(1.5);
+      }
+      &:hover {
+        color: orange !important;
+      }
     }
   }
   .mtv-credits {

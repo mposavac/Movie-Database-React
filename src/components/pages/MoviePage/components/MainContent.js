@@ -1,6 +1,6 @@
 import React from "react";
 import MtvImgCont from "../../Shared components/MtvImgCont";
-import Info from "./Info";
+import Info from "../../Shared components/Info";
 import Casting from "./Casting";
 import MoreDeatils from "./MoreDetails";
 import Similar from "../../Shared components/Similar";

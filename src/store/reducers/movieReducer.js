@@ -1,6 +1,5 @@
 const initState = {
   indicator: "movie",
-  isLoading: true,
   ratingLoaded: false,
   movie: undefined,
   cast: undefined,
@@ -21,7 +20,7 @@ const movieReducer = (state = initState, action) => {
     case "CAST_ERROR":
       return state;
     case "SIMILAR_RESPONSE":
-      return { ...state, similar: action.data, isLoading: false };
+      return { ...state, similar: action.data };
     case "SIMILAR_ERROR":
       return state;
     case "FULL_CAST":

@@ -34,15 +34,6 @@ header {
   @include tablet {
     position: fixed;
   }
-  ul li a {
-    text-decoration: none;
-    padding: 0.5rem 0;
-    color: color(secondaryM);
-    transition-property: color;
-    transition-duration: 1s;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-  }
 
   .header-container {
     height: 4rem;
@@ -100,41 +91,112 @@ header {
           display: none;
         }
       }
-      ul li {
-        position: relative;
-        display: inline;
-        margin-right: 1rem;
-        padding: 0.5rem;
-        box-sizing: border-box;
-        transition: 0.5s;
-        color: color(secondaryM);
-        &:before,
-        &::after {
-          position: absolute;
-          content: "";
-          height: 1px;
-          width: 0%;
-          background: color(secondaryM);
-          transition: 0.3s;
-        }
-        &::before {
-          top: -1px;
-        }
-        &::after {
-          bottom: -1px;
-          transform: translateX(-100%);
-        }
-        &:hover {
-          &::before,
+      ul.nav-ul {
+        height: 4rem;
+        li {
+          position: relative;
+          display: inline;
+          margin-right: 1rem;
+          padding: 0.5rem;
+          box-sizing: border-box;
+          transition: 0.5s;
+          color: color(secondaryM);
+          &:before,
           &::after {
-            width: calc(100% - 1rem);
+            position: absolute;
+            content: "";
+            height: 1px;
+            width: 0%;
+            background: color(secondaryM);
+            transition: 0.3s;
+          }
+          &::before {
+            top: -1px;
+          }
+          &::after {
+            bottom: -1px;
+            transform: translateX(-100%);
+          }
+          &:hover {
+            &::before,
+            &::after {
+              width: calc(100% - 1rem);
+            }
+          }
+          @include tablet {
+            margin-right: 0rem;
+          }
+          @include mobile {
+            display: none;
+          }
+
+          a {
+            text-decoration: none;
+            padding: 0.5rem 0;
+            color: color(secondaryM);
+            transition-property: color;
+            transition-duration: 1s;
+            font-weight: 500;
+            letter-spacing: 0.5px;
           }
         }
-        @include tablet {
-          margin-right: 0rem;
+        ul {
+          z-index: 1;
+          opacity: 0;
+          position: absolute;
+          visibility: hidden;
+          right: 0;
+          background: linear-gradient(
+              to right,
+              desaturate(lighten(color(primaryM), 15%), 15%),
+              desaturate(lighten(color(primaryM), 18%), 18%)
+            )
+            no-repeat;
+          color: color(secondaryM);
+          width: 270%;
+          height: 4rem;
+          transform: translate(2.5rem, -2.5rem) scale(0.8);
+          transition: opacity 0.7s, transform 0.4s, all 0.2s;
+          transition-delay: 0.3s;
+          clip-path: polygon(8% 0, 100% 0%, 92% 100%, 0% 100%);
+          text-align: right;
+          border-radius: 0 0 35px 15px;
+          li {
+            &:nth-child(1) {
+              margin-right: 0rem !important;
+              padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+            }
+            &:nth-child(2) {
+              &::before,
+              &::after {
+                background: none;
+              }
+            }
+
+            a {
+              color: color(secondaryM) !important;
+            }
+            button {
+              cursor: pointer;
+              padding: 0.4rem;
+              background: color(primaryM);
+              color: color(secondaryM);
+              border: 1px color(secondaryM) solid;
+              outline: none;
+              border-radius: 10px;
+              transition: 0.25s;
+              &:hover {
+                transform: scale(1.1);
+              }
+            }
+          }
         }
-        @include mobile {
-          display: none;
+        li:nth-child(4):hover {
+          ul {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+            visibility: visible;
+          }
         }
       }
 
@@ -244,6 +306,26 @@ header.tv {
         &::after {
           background: color(primaryT) !important;
         }
+        ul {
+          background: color(secondaryT);
+          color: color(primaryT);
+          li {
+            &:nth-child(2) {
+              &::before,
+              &::after {
+                background: none !important;
+              }
+            }
+            a {
+              color: color(primaryT) !important;
+            }
+            button {
+              color: color(secondaryT);
+              background: color(primaryT);
+              border: none;
+            }
+          }
+        }
       }
       .active {
         border-top: 2px color(primaryT) solid !important;
@@ -264,9 +346,6 @@ header.tv {
 
 header.pe {
   background: color(secondaryT) !important;
-  ul li a {
-    color: color(primaryP) !important;
-  }
   .header-container {
     .header-logo {
       border: 2px color(primaryP) solid !important;
@@ -287,6 +366,26 @@ header.pe {
         &::after {
           background: color(primaryP) !important;
         }
+        ul {
+          background: color(secondaryT);
+          color: color(primaryP);
+          li {
+            &:nth-child(2) {
+              &::before,
+              &::after {
+                background: none !important;
+              }
+            }
+            a {
+              color: color(primaryP) !important;
+            }
+            button {
+              color: color(secondaryT);
+              border: none;
+              background: color(primaryP);
+            }
+          }
+        }
       }
       .active {
         border-top: 2px color(primaryP) solid !important;
@@ -306,12 +405,15 @@ header.pe {
 }
 
 footer {
-  position: relative;
+  position: absolute;
+
+  width: 100%;
   img {
     position: absolute;
     bottom: -0.7rem;
-    left: -6.5rem;
-    transform: scale(0.4);
+    left: -7rem;
+    transform: scale(0.3) translate(-50px);
+
     @include mobile {
       transform: scale(0.2);
       bottom: -2.6rem;

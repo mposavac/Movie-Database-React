@@ -7,7 +7,7 @@ import Container from "./components/Container";
 import PageIndicator from "./components/PageIndicator";
 import Loading from "../../Loading";
 
-export class Popular extends Component {
+export class List extends Component {
   componentDidMount() {
     this.props.listFetch("/popular", 1);
   }
@@ -29,10 +29,10 @@ export class Popular extends Component {
 
   render() {
     document.title = "Trending";
-    const { list: movie, indicator, isLoading } = this.props.listData;
+    const { list: movie, indicator } = this.props.listData;
     return (
       <React.Fragment>
-        <Loading color={"mo"} isLoading={isLoading} />
+        <Loading color={"mo"} isLoading={movie ? false : true} />
         {indicator === "/popular" && (
           <section className="list-grid-container">
             {movie &&
@@ -74,4 +74,4 @@ const mapStateToDispatch = dispatch => {
 export default connect(
   mapStateToProps,
   mapStateToDispatch
-)(Popular);
+)(List);

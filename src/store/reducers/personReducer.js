@@ -1,5 +1,4 @@
 const initState = {
-  isLoading: true,
   personData: undefined,
   personCredits: undefined,
   fullBioShown: false
@@ -10,7 +9,7 @@ const personReducer = (state = initState, action) => {
     case "PERSON_RESPONSE":
       return { ...state, personData: action.data };
     case "PERSON_KNOWNFOR":
-      return { ...state, personCredits: action.credits, isLoading: false };
+      return { ...state, personCredits: action.credits };
     case "SHOW_BIO":
       return { ...state, fullBioShown: true };
     case "HIDE_BIO":

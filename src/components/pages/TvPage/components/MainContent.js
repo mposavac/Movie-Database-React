@@ -1,7 +1,7 @@
 import React from "react";
 import Loading from "../../../Loading";
 import Casting from "./Casting";
-import Info from "./Info";
+import Info from "../../Shared components/Info";
 import MoreDetails from "./MoreDetails";
 import Seasons from "./Seasons";
 import Similar from "../../Shared components/Similar";
