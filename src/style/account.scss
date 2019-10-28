@@ -1,6 +1,6 @@
-@import "definition.scss";
+@import 'definition.scss';
 .account-background {
-  content: "";
+  content: '';
   top: 0;
   position: absolute;
   height: 100vh;
@@ -8,12 +8,19 @@
   background: color(primaryM);
   transition: 0.5s;
   z-index: -5;
+  @include mobile {
+    height: calc(100vh - 56px);
+  }
 }
 .account-page {
   width: 100%;
   height: calc(100vh - 4rem - 2rem);
   box-sizing: border-box;
   overflow: hidden;
+  @include mobile {
+    transform: translateY(56px);
+    height: calc(100vh - 4rem - 56px);
+  }
 
   .account-container {
     position: relative;
@@ -74,7 +81,9 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-
+        @include mobile {
+          padding: 0 0.5rem;
+        }
         input {
           text-align: center;
           font-style: italic;
@@ -178,6 +187,10 @@
     margin: 3vh auto;
     overflow: hidden;
     border-radius: 12px;
+    @include mobile {
+      width: 95%;
+      box-shadow: unset;
+    }
     .container {
       padding: 0.5rem;
       height: 100%;
@@ -185,11 +198,12 @@
       h2 {
         color: color(primaryM);
         padding: 0.5rem;
-        display: inline-block;
-        margin-left: 50%;
-        transform: translateX(-50%);
+        @include mobile {
+          font-size: 1.1rem;
+        }
       }
       select#sort {
+        float: right;
         background: linear-gradient(
             to right,
             color(primaryM),
@@ -205,12 +219,32 @@
           box-shadow: 0 0 10px 100px red inset;
           background: red !important;
         }
-        transform: translate(-0.5rem, -0.25rem);
+        transform: translate(-2rem, -2.5rem);
+        @include mobile {
+          transform: unset;
+        }
       }
       .favourites-grid {
+        clear: both;
         display: grid;
-        padding: 1rem 0.25rem;
+        padding: 0rem 0.25rem 1rem 0.25rem;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        min-height: 85%;
+        align-items: center;
+        @include mobile {
+          grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        }
+        .link-add {
+          font-size: 2rem;
+          color: color(primaryM);
+          transition: 0.25s;
+          animation: fadeIn 0.7s ease-out both;
+          animation-delay: 1.3s;
+          &:hover {
+            color: color(secondaryT);
+            font-size: 2.2rem;
+          }
+        }
 
         .favourite {
           margin: 0 auto 0.75rem auto;
@@ -218,22 +252,13 @@
           border-radius: 10px;
           width: 150px;
           overflow: hidden;
-          animation: fadeIn 0.7s ease-out;
-          animation-fill-mode: both;
+          animation: fadeIn 0.7s ease-in-out both;
+          @include mobile {
+            width: 100px;
+          }
           @for $i from 1 through 20 {
             &:nth-child(#{$i}) {
               animation-delay: #{$i * 0.08}s;
-            }
-          }
-          @keyframes fadeIn {
-            0% {
-              opacity: 0;
-              transform: translateY(15px);
-            }
-
-            100% {
-              opacity: 1;
-              transform: translateY(0);
             }
           }
           img {
@@ -252,6 +277,18 @@
               transform: scale(1.05);
               opacity: 0.7;
             }
+          }
+        }
+
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(15px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
           }
         }
       }
@@ -306,7 +343,7 @@
       background: rgba(255, 255, 255, 0.1);
       overflow: hidden;
       &::after {
-        content: "";
+        content: '';
         display: block;
         position: absolute;
         height: 15vh;
@@ -348,4 +385,7 @@
 
 .account-page + footer {
   bottom: 0;
+  @include mobile {
+    display: none;
+  }
 }

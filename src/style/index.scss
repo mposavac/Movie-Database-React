@@ -1,9 +1,9 @@
-@import "definition.scss";
+@import 'definition.scss';
 
 * {
   margin: 0;
   padding: 0;
-  font-family: "Varela Round", sans-serif;
+  font-family: 'Varela Round', sans-serif;
   text-decoration: none;
 }
 
@@ -53,7 +53,7 @@ header {
       padding: 10px 25px;
       margin-top: 0.05rem;
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         background: color(secondaryM);
         width: 100%;
@@ -104,7 +104,7 @@ header {
           &:before,
           &::after {
             position: absolute;
-            content: "";
+            content: '';
             height: 1px;
             width: 0%;
             background: color(secondaryM);
@@ -247,14 +247,14 @@ header {
     }
     ul {
       text-align: center;
-      margin: 2.5rem auto 0 auto;
+
       list-style: none;
 
       li {
         opacity: 0;
         font-weight: bold;
         letter-spacing: 2px;
-        padding: 1rem 0.4rem 0 0.4rem;
+        //padding: 1rem 0.4rem 0 0.4rem;
         margin: 1.8rem auto;
       }
     }
@@ -262,7 +262,7 @@ header {
 }
 .side-active {
   height: 50vh !important;
-  @for $i from 1 through 4 {
+  @for $i from 1 through 5 {
     li:nth-child(#{$i}) {
       display: block;
       animation: enter #{$i * 0.15}s forwards ease-in-out;
@@ -341,6 +341,9 @@ header.tv {
   }
   .side-menu {
     background: color(secondaryT) !important;
+    p {
+      color: color(primaryT) !important;
+    }
   }
 }
 
@@ -406,8 +409,8 @@ header.pe {
 
 footer {
   position: absolute;
-
   width: 100%;
+
   img {
     position: absolute;
     bottom: -0.7rem;
@@ -465,7 +468,7 @@ footer.pe {
   transition: 0.4s;
   &::before {
     position: absolute;
-    content: "";
+    content: '';
     box-sizing: border-box;
     top: 50%;
     left: 50%;
@@ -533,10 +536,10 @@ footer.pe {
     }
   }
 }
-@import "./account.scss";
-@import "./fullCast.scss";
-@import "./home.scss";
-@import "./moviePage.scss";
-@import "./personPage.scss";
-@import "./popular.scss";
-@import "./tvPage.scss";
+@import './account.scss';
+@import './fullCast.scss';
+@import './home.scss';
+@import './moviePage.scss';
+@import './personPage.scss';
+@import './popular.scss';
+@import './tvPage.scss';

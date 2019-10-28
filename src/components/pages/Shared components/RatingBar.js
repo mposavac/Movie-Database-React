@@ -1,18 +1,18 @@
-import React from "react";
-import { Spring } from "react-spring/renderprops";
+import React from 'react';
+import { Spring } from 'react-spring/renderprops';
 
 export default function RatingBar(props) {
   let ratingBarStyle = {
     width: `${props.rating}% `,
-    transform: "translateX(0%)",
-    background: "#000000"
+    transform: 'translateX(0%)',
+    background: '#000000'
   };
   if (props.rating < 50)
-    ratingBarStyle.background = "linear-gradient(to right, #FF5754, #FFADA8)";
+    ratingBarStyle.background = 'linear-gradient(to right, #FF5754, #FFADA8)';
   if (props.rating > 50 && props.rating < 69)
-    ratingBarStyle.background = "linear-gradient(to right, #FFFC66, #FFECA9)";
+    ratingBarStyle.background = 'linear-gradient(to right, #FFFC66, #FFECA9)';
   if (props.rating > 69)
-    ratingBarStyle.background = "linear-gradient(to right, #87FF5E, #C0FFAB)";
+    ratingBarStyle.background = 'linear-gradient(to right, #87FF5E, #C0FFAB)';
 
   return (
     <div className="mtv-rating">
@@ -23,13 +23,13 @@ export default function RatingBar(props) {
         />
       </div>
       {isNaN(props.rating) && (
-        <p className={"mtv-p-rating " + (props.indicator === "tv" && "whiteT")}>
+        <p className={'mtv-p-rating ' + (props.indicator === 'tv' && 'whiteT')}>
           Not Rated
         </p>
       )}
-      {!isNaN(props.rating) && props.ratingLoaded && (
+      {!isNaN(props.rating) && props.ratingLoaded ? (
         <Spring
-          from={{ number: 0, display: "inline-block" }}
+          from={{ number: 0, display: 'inline-block' }}
           to={{ number: props.rating }}
           config={{ duration: 1500 }}
         >
@@ -37,7 +37,7 @@ export default function RatingBar(props) {
             <div style={propss}>
               <p
                 className={
-                  "mtv-p-rating " + (props.indicator === "tv" && "whiteT")
+                  'mtv-p-rating ' + (props.indicator === 'tv' && 'whiteT')
                 }
               >
                 {propss.number.toFixed()}%
@@ -45,6 +45,10 @@ export default function RatingBar(props) {
             </div>
           )}
         </Spring>
+      ) : (
+        <p style={{ opacity: 0 }} className="mtv-p-rating">
+          00%
+        </p>
       )}
     </div>
   );

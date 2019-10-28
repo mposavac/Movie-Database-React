@@ -1,17 +1,17 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function Header(props) {
-  const navigation = ["POPULAR", "TOP RATED", "TV SHOWS"];
-  if (props.isLogged) navigation.push("ACCOUNT");
-  else navigation.push("LOGIN");
-  const path = ["/popular", "/topRated", "/tvShows", "/account"];
+  const navigation = ['POPULAR', 'TOP RATED', 'TV SHOWS'];
+  if (props.isLogged) navigation.push('ACCOUNT');
+  else navigation.push('LOGIN');
+  const path = ['/popular', '/topRated', '/tvShows', '/account'];
   return (
     <header
       className={
-        props.menuColor === "tv" || props.menuColor === "pe"
+        props.menuColor === 'tv' || props.menuColor === 'pe'
           ? props.menuColor
-          : ""
+          : ''
       }
     >
       <div className="header-container">
@@ -24,7 +24,7 @@ export default function Header(props) {
           <ul className="nav-ul">
             {navigation.map((element, i) => (
               <li key={i}>
-                {element === "ACCOUNT" ? (
+                {element === 'ACCOUNT' ? (
                   <React.Fragment>
                     {element}
                     <ul>
@@ -47,32 +47,37 @@ export default function Header(props) {
               className="line"
               style={
                 props.shown
-                  ? { transform: "translateY(11px) rotate(45deg) " }
+                  ? { transform: 'translateY(11px) rotate(45deg) ' }
                   : null
               }
             />
             <div
               className="line"
-              style={props.shown ? { opacity: "0" } : { opacity: "1" }}
+              style={props.shown ? { opacity: '0' } : { opacity: '1' }}
             />
             <div
               className="line"
               style={
                 props.shown
-                  ? { transform: "translateY(-11px) rotate(-45deg)" }
+                  ? { transform: 'translateY(-11px) rotate(-45deg)' }
                   : null
               }
             />
           </div>
         </nav>
       </div>
-      <div className={"side-menu " + (props.shown ? "side-active" : "")}>
+      <div className={'side-menu ' + (props.shown ? 'side-active' : '')}>
         <ul>
           {navigation.map((element, i) => (
             <li key={i} onClick={props.hideMenu}>
               <NavLink to={path[i]}>{element}</NavLink>
             </li>
           ))}
+          {props.isLogged && (
+            <li>
+              <p onClick={props.handleSignOut}>SIGN OUT</p>
+            </li>
+          )}
         </ul>
       </div>
     </header>

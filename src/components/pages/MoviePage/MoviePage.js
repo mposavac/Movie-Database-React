@@ -1,26 +1,26 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { movieFetch } from "../../../store/actions/movieActions";
+import { movieFetch } from '../../../store/actions/movieActions';
 import {
   addFavourite,
   removeFavourite
-} from "../../../store/actions/authActions";
+} from '../../../store/actions/authActions';
 
-import Loading from "../../Loading";
-import MainContent from "./components/MainContent";
+import Loading from '../../Loading';
+import MainContent from './components/MainContent';
 
 export class MoviePage extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
-    window.addEventListener("scroll", this.onScroll, false);
+    window.addEventListener('scroll', this.onScroll, false);
     const movieId = this.props.match.params.movieId;
     this.props.movieFetch(movieId);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.onScroll, false);
+    window.removeEventListener('scroll', this.onScroll, false);
     this.props.resetAction();
   }
 
@@ -33,13 +33,13 @@ export class MoviePage extends Component {
       const movieId = this.props.match.params.movieId;
       this.props.resetAction();
       this.props.movieFetch(movieId);
-      console.log("ComponentDidUpdate");
+      console.log('ComponentDidUpdate');
     }
   }
 
   onScroll = () => {
     if (
-      window.pageYOffset > 150 &&
+      window.pageYOffset > 110 &&
       window.pageYOffset < 350 &&
       !this.props.movieData.ratingLoaded &&
       this.props.movieData.movie !== undefined
@@ -80,7 +80,7 @@ export class MoviePage extends Component {
     const { movie, cast, similar } = this.props.movieData;
     return (
       <React.Fragment>
-        <Loading color={"mo"} isLoading={movie ? false : true} />
+        <Loading color={'mo'} isLoading={movie ? false : true} />
         {movie && movie.status_code ? (
           <Redirect to="/error" />
         ) : similar && cast && movie ? (
@@ -93,14 +93,14 @@ export class MoviePage extends Component {
             handleFavouriteClick={this.handleFavourite}
           />
         ) : (
-          <div style={{ minHeight: "100vh" }} />
+          <div style={{ minHeight: '100vh' }} />
         )}
       </React.Fragment>
     );
   }
 }
 const mapStateToProps = state => {
-  console.log("MOVIE state", state);
+  console.log('MOVIE state', state);
   return {
     movieData: state.movie,
     isLogged: state.firebase.auth.uid ? true : false,
@@ -111,12 +111,12 @@ const mapStateToProps = state => {
 const mapStateToDispatch = dispatch => {
   return {
     movieFetch: movieId => dispatch(movieFetch(movieId)),
-    resetAction: () => dispatch({ type: "SET_DEFAULT" }),
-    loadRating: () => dispatch({ type: "LOAD_RATING" }),
-    fixSmallTite: () => dispatch({ type: "FIX_SMALL" }),
-    fullCast: () => dispatch({ type: "FULL_CAST" }),
+    resetAction: () => dispatch({ type: 'SET_DEFAULT' }),
+    loadRating: () => dispatch({ type: 'LOAD_RATING' }),
+    fixSmallTite: () => dispatch({ type: 'FIX_SMALL' }),
+    fullCast: () => dispatch({ type: 'FULL_CAST' }),
     highlightChange: highlightIndex =>
-      dispatch({ type: "HIGHTLIGHT_CHANGE", data: highlightIndex }),
+      dispatch({ type: 'HIGHTLIGHT_CHANGE', data: highlightIndex }),
     addFavourite: movieData => dispatch(addFavourite(movieData)),
     removeFavourite: movieId => dispatch(removeFavourite(movieId))
   };

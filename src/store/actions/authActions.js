@@ -60,6 +60,7 @@ export const addFavourite = favouriteData => {
     let indicator = favouriteData.indicator,
       id = favouriteData[indicator].id,
       poster_path = favouriteData[indicator].poster_path,
+      rating = favouriteData[indicator].vote_average,
       title,
       release_date;
 
@@ -79,6 +80,7 @@ export const addFavourite = favouriteData => {
         id: id,
         indicator: indicator,
         title: title,
+        rating: rating,
         poster_path: poster_path,
         release_date: release_date
       })

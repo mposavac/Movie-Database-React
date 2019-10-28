@@ -1,4 +1,4 @@
-@import "definition.scss";
+@import 'definition.scss';
 
 main.mtv-page {
   width: 80%;
@@ -217,7 +217,7 @@ main.mtv-page {
         cursor: pointer;
         transition: 0.3s;
         &:last-child::after {
-          content: "space";
+          content: 'space';
           visibility: hidden;
           padding-right: 10rem;
 
@@ -309,7 +309,7 @@ main.mtv-page {
       background: color(primaryM);
       border-radius: 0.7rem;
       color: color(secondaryM);
-      border: 2px #deb522 solid;
+      border: 2px color(primaryM) solid;
       font-size: 1.3rem;
       &:hover {
         color: #deb522;
@@ -346,13 +346,15 @@ main.mtv-page {
         left: 0;
         opacity: 0.8;
         width: 100%;
-
+        @include mobile {
+          opacity: 0;
+        }
         padding: 0.5rem 0;
         transition: 0.3s;
         &::before {
           z-index: -2;
           position: absolute;
-          content: "";
+          content: '';
           bottom: 0;
           left: 0;
           width: 100%;
@@ -455,7 +457,7 @@ main.mtv-page {
   &::before {
     top: 0;
     left: 0;
-    content: "";
+    content: '';
     position: absolute;
     height: 100%;
     width: 100%;

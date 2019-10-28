@@ -1,19 +1,19 @@
-import { HashRouter, Route, Switch } from "react-router-dom";
-import React from "react";
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import React from 'react';
 
-import Popular from "../components/pages/Lists/Popular";
-import TopRated from "../components/pages/Lists/TopRated";
-import TvShows from "../components/pages/Lists/TvShows";
-import MoviePage from "../components/pages/MoviePage/MoviePage";
-import TvPage from "../components/pages/TvPage/TvPage";
-import Home from "../components/pages/Home/Home";
-import PersonPage from "../components/pages/PersonPage/PersonPage";
-import Account from "../components/pages/AccountPage/Account";
-import Error from "../components/pages/Error";
-import HeaderHandler from "../components/HeaderHandler";
-import Footer from "../components/Footer";
+import Popular from '../components/pages/Lists/Popular';
+import TopRated from '../components/pages/Lists/TopRated';
+import TvShows from '../components/pages/Lists/TvShows';
+import MoviePage from '../components/pages/MoviePage/MoviePage';
+import TvPage from '../components/pages/TvPage/TvPage';
+import Home from '../components/pages/Home/Home';
+import PersonPage from '../components/pages/PersonPage/PersonPage';
+import Account from '../components/pages/AccountPage/Account';
+import Error from '../components/pages/Error';
+import HeaderHandler from '../components/HeaderHandler';
+import Footer from '../components/Footer';
 
-import "../style/index.scss";
+import '../style/index.scss';
 
 export default function routing() {
   return (

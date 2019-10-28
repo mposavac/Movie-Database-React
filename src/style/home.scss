@@ -1,4 +1,4 @@
-@import "definition.scss";
+@import 'definition.scss';
 main.home-background::after {
   position: absolute;
   top: 4rem;
@@ -8,7 +8,7 @@ main.home-background::after {
   width: 100%;
   min-height: 100vh;
   height: 110%;
-  content: "";
+  content: '';
   opacity: 0.5;
 }
 .home-container {
@@ -19,12 +19,12 @@ main.home-background::after {
 .hot-container {
   position: relative;
   display: grid;
-  grid-template: "first first forth five" 33.3% "first first six six" 33.4% "second third six six" 33.3%;
+  grid-template: 'first first forth five' 33.3% 'first first six six' 33.4% 'second third six six' 33.3%;
   border: 1px color(white) solid;
   box-shadow: -10px 10px 50px black;
   margin-top: 4.5rem;
   overflow: hidden;
-  max-height: 80vh;
+  max-height: 75vh;
   animation: fadingIn 0.4s ease-out;
 
   @keyframes fadingIn {
@@ -55,6 +55,7 @@ main.home-background::after {
       height: 7rem;
     }
     .hot-img {
+      max-width: 100%;
       width: 100%;
       height: 100%;
       transition: 0.15s;
@@ -126,7 +127,7 @@ main.home-background::after {
   position: absolute;
   top: 0;
   right: 0;
-  content: "";
+  content: '';
   z-index: -1;
   @include gradient-background(primaryM, 20%);
   width: 100%;
@@ -206,7 +207,7 @@ main.home-background::after {
       left: 0;
       background: color(primaryM);
       z-index: -5;
-      content: "";
+      content: '';
     }
     @include mobile {
       width: 70%;
@@ -302,7 +303,7 @@ main.home-background::after {
       transition: 0.3s;
       padding-bottom: 0.5rem;
       &::after {
-        content: " ";
+        content: ' ';
         position: absolute;
         bottom: 0;
         left: 50%;
@@ -337,7 +338,7 @@ main.home-background::after {
       position: absolute;
       bottom: 0;
       left: 0;
-      content: "";
+      content: '';
       height: 2px;
       background: color(primaryT);
       width: 62%;
@@ -353,6 +354,11 @@ main.home-background::after {
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
+    a {
+      @include mobile {
+        margin: 1rem 0;
+      }
+    }
     .tv-content {
       position: relative;
       display: inline-block;
@@ -362,7 +368,7 @@ main.home-background::after {
       border-radius: 3px;
       &::after {
         position: absolute;
-        content: "";
+        content: '';
         top: 0;
         right: 0;
         height: 100%;
