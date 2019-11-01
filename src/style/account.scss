@@ -1,0 +1,391 @@
+@import 'definition.scss';
+.account-background {
+  content: '';
+  top: 0;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background: color(primaryM);
+  transition: 0.5s;
+  z-index: -5;
+  @include mobile {
+    height: calc(100vh - 56px);
+  }
+}
+.account-page {
+  width: 100%;
+  height: calc(100vh - 4rem - 2rem);
+  box-sizing: border-box;
+  overflow: hidden;
+  @include mobile {
+    transform: translateY(56px);
+    height: calc(100vh - 4rem - 56px);
+  }
+
+  .account-container {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 800px;
+    max-width: 100%;
+    min-height: 63vh;
+    background: color(white);
+    margin: 5rem auto;
+    box-shadow: 0 5px 20px black;
+
+    p {
+      padding: 1rem 0;
+      font-size: 14px;
+    }
+    h2 {
+      margin: 1rem auto;
+    }
+    a {
+      font-size: 13px;
+      font-style: italic;
+      margin: 1rem auto;
+      transition: 0.2s ease-out;
+      &:hover {
+        letter-spacing: 2px;
+      }
+    }
+    button {
+      border-radius: 1.2rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 10px 45px;
+      margin-top: 15px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: transform 80ms ease-in;
+      cursor: pointer;
+      &:active {
+        transform: scale(0.8);
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    .form-container {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      transition: all 0.5s ease-in-out;
+
+      form {
+        background: color(white);
+        display: flex;
+        flex-direction: column;
+        padding: 0 3rem;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        @include mobile {
+          padding: 0 0.5rem;
+        }
+        input {
+          text-align: center;
+          font-style: italic;
+          color: color(primaryM);
+          background: transparent;
+          padding: 10px 15px;
+          width: 100%;
+          margin: 10px 0;
+          border: unset;
+          border-radius: 8px;
+          border-bottom: 1px color(secondaryM) solid;
+          &:focus {
+            outline: none;
+          }
+        }
+
+        button {
+          transition: 0.5s;
+          border: 1px color(primaryM) solid;
+          background: color(primaryM);
+          color: color(white);
+        }
+      }
+    }
+    .form-container.log-in-container {
+      left: 0;
+      width: 50%;
+      z-index: 2;
+
+      .error-msg {
+        color: color(primaryT);
+        transition: 0.5s;
+        transform: translateY(50%);
+        &.error-msg-anim {
+          transform: translateY(0%);
+        }
+      }
+    }
+    .form-container.sign-up-container {
+      left: 0;
+      width: 50%;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .overlay-container {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 100;
+      transition: transform 0.5s ease-in-out;
+
+      .overlay {
+        position: relative;
+        height: 100%;
+        width: 200%;
+        left: -100%;
+        color: color(white);
+        background: linear-gradient(to right, color(primaryM), #2b5e91)
+          no-repeat 0 0 / cover;
+        transition: transform 0.5s ease-in-out;
+
+        .overlay-panel {
+          position: absolute;
+          top: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 50%;
+          text-align: center;
+          transition: 0.5s ease-in-out;
+
+          .btn-contrast {
+            background: transparent;
+            border-color: color(secondaryM);
+            color: color(white);
+          }
+        }
+        .overlay-panel.panel-left {
+          right: 0;
+        }
+        .overlay-panel.panel-right {
+          transform: translateX(-20%);
+        }
+      }
+    }
+  }
+
+  .user-profile {
+    text-align: center;
+    position: relative;
+    width: 70%;
+    height: 80vh;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 1px 10px 20px 9px;
+    margin: 3vh auto;
+    overflow: hidden;
+    border-radius: 12px;
+    @include mobile {
+      width: 95%;
+      box-shadow: unset;
+    }
+    .container {
+      padding: 0.5rem;
+      height: 100%;
+      overflow-y: scroll;
+      h2 {
+        color: color(primaryM);
+        padding: 0.5rem;
+        @include mobile {
+          font-size: 1.1rem;
+        }
+      }
+      select#sort {
+        float: right;
+        background: linear-gradient(
+            to right,
+            color(primaryM),
+            desaturate(lighten(color(primaryM), 25%), 25%)
+          )
+          no-repeat;
+        background-color: color(primaryM);
+        color: color(secondaryM);
+        padding: 0.25rem 0.5rem;
+        outline: none;
+        border-radius: 5px;
+        option:hover {
+          box-shadow: 0 0 10px 100px red inset;
+          background: red !important;
+        }
+        transform: translate(-2rem, -2.5rem);
+        @include mobile {
+          transform: unset;
+        }
+      }
+      .favourites-grid {
+        clear: both;
+        display: grid;
+        padding: 0rem 0.25rem 1rem 0.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        min-height: 85%;
+        align-items: center;
+        @include mobile {
+          grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        }
+        .link-add {
+          font-size: 2rem;
+          color: color(primaryM);
+          transition: 0.25s;
+          animation: fadeIn 0.7s ease-out both;
+          animation-delay: 1.3s;
+          &:hover {
+            color: color(secondaryT);
+            font-size: 2.2rem;
+          }
+        }
+
+        .favourite {
+          margin: 0 auto 0.75rem auto;
+          opacity: 0;
+          border-radius: 10px;
+          width: 150px;
+          overflow: hidden;
+          animation: fadeIn 0.7s ease-in-out both;
+          @include mobile {
+            width: 100px;
+          }
+          @for $i from 1 through 20 {
+            &:nth-child(#{$i}) {
+              animation-delay: #{$i * 0.08}s;
+            }
+          }
+          img {
+            width: 100%;
+            transition: 0.25s;
+          }
+          .title {
+            font-size: 0.8rem;
+            span {
+              font-size: 0.6rem;
+            }
+          }
+
+          &:hover {
+            img {
+              transform: scale(1.05);
+              opacity: 0.7;
+            }
+          }
+        }
+
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(15px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
+}
+
+/*ANIMATION*/
+.account-container.right-panel-active {
+  .log-in-container {
+    transform: translateX(100%) !important;
+  }
+  .overlay-container {
+    transform: translateX(-100%) !important;
+    .overlay {
+      transform: translateX(50%) !important;
+      .panel-right {
+        transform: translateX(0) !important;
+      }
+      .panel-left {
+        transform: translateX(20%) !important;
+      }
+    }
+  }
+  .sign-up-container {
+    transform: translateX(100%) !important;
+    opacity: 1 !important;
+    z-index: 2 !important;
+  }
+}
+
+//POZADINSKA ANIMACIJA
+.background {
+  position: absolute;
+  z-index: -1;
+  display: table;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  .lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    .line {
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      top: 0;
+      left: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 15vh;
+        width: 100%;
+        top: -50%;
+        left: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0) 0%,
+          #ffffff 75%,
+          #ffffff 100%
+        );
+        animation: run 7s 0s infinite forwards cubic-bezier(0.4, 0.26, 0, 0.97);
+      }
+      &:nth-child(1) {
+        margin-left: -25%;
+        &::after {
+          animation-delay: 1s;
+        }
+      }
+      &:nth-child(3) {
+        margin-left: 25%;
+        &::after {
+          animation-delay: 1.5s;
+        }
+      }
+    }
+  }
+}
+
+@keyframes run {
+  0% {
+    top: -50%;
+  }
+  100% {
+    top: 130%;
+  }
+}
+
+.account-page + footer {
+  bottom: 0;
+  @include mobile {
+    display: none;
+  }
+}
