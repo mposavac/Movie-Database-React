@@ -1,6 +1,7 @@
 {
   "name": "tmdb",
   "version": "0.1.0",
+  "proxy": "https://www.youtube.com",
   "private": true,
   "dependencies": {
     "firebase": "^6.3.0",

@@ -1,16 +1,17 @@
-import React from "react";
-import MtvImgCont from "../../Shared components/MtvImgCont";
-import Info from "../../Shared components/Info";
-import Casting from "./Casting";
-import MoreDeatils from "./MoreDetails";
-import Similar from "../../Shared components/Similar";
-import FullCastDisplay from "../../Shared components/FullCastDisplay";
+import React from 'react';
+import MtvImgCont from '../../Shared components/MtvImgCont';
+import Info from '../../Shared components/Info';
+import Casting from './Casting';
+import MoreDeatils from './MoreDetails';
+import Similar from '../../Shared components/Similar';
+import FullCastDisplay from '../../Shared components/FullCastDisplay';
 
 export default function MainContent(props) {
   const {
     movie,
     indicator,
     similar,
+    videos,
     ratingLoaded,
     cast,
     fullCastShown,
@@ -26,6 +27,7 @@ export default function MainContent(props) {
           <Info
             movie={movie}
             ratingLoaded={ratingLoaded}
+            videos={videos.results}
             handleClick={props.handleFavouriteClick}
             isLogged={props.isLogged}
             isFavourite={props.isFavourite}

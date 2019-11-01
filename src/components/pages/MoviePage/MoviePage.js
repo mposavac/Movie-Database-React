@@ -77,13 +77,13 @@ export class MoviePage extends Component {
     }
   };
   render() {
-    const { movie, cast, similar } = this.props.movieData;
+    const { movie, cast, similar, videos } = this.props.movieData;
     return (
       <React.Fragment>
         <Loading color={'mo'} isLoading={movie ? false : true} />
         {movie && movie.status_code ? (
           <Redirect to="/error" />
-        ) : similar && cast && movie ? (
+        ) : similar && cast && movie && videos ? (
           <MainContent
             data={this.props.movieData}
             isLogged={this.props.isLogged}

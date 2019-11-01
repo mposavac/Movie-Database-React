@@ -1,12 +1,12 @@
-import React from "react";
-import Loading from "../../../Loading";
-import Casting from "./Casting";
-import Info from "../../Shared components/Info";
-import MoreDetails from "./MoreDetails";
-import Seasons from "./Seasons";
-import Similar from "../../Shared components/Similar";
-import MtvImgCont from "../../Shared components/MtvImgCont";
-import FullCastDisplay from "../../Shared components/FullCastDisplay";
+import React from 'react';
+import Loading from '../../../Loading';
+import Casting from './Casting';
+import Info from '../../Shared components/Info';
+import MoreDetails from './MoreDetails';
+import Seasons from './Seasons';
+import Similar from '../../Shared components/Similar';
+import MtvImgCont from '../../Shared components/MtvImgCont';
+import FullCastDisplay from '../../Shared components/FullCastDisplay';
 
 export default function MainContent(props) {
   document.title = props.data.tv.name;
@@ -18,6 +18,7 @@ export default function MainContent(props) {
     similar,
     season,
     imdbId,
+    videos,
     ratingLoaded,
     fixSmall,
     activeSeason,
@@ -30,6 +31,7 @@ export default function MainContent(props) {
           <MtvImgCont tv={tv} indicator={indicator} fixSmall={fixSmall} />
           <Info
             tv={tv}
+            videos={videos.results}
             ratingLoaded={ratingLoaded}
             handleClick={props.handleFavouriteClick}
             isLogged={props.isLogged}
@@ -41,7 +43,7 @@ export default function MainContent(props) {
             onClick={props.handleClickCast}
           />
           {season === undefined ? (
-            <Loading color={"tv"} />
+            <Loading color={'tv'} />
           ) : (
             <Seasons
               episodes={season}

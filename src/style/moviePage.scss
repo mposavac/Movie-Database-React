@@ -91,12 +91,13 @@ main.mtv-page {
       }
     }
   }
-  section.mtv-info,
+
   section.mtv-more-details,
   section.mtv-details {
     padding: 1.5rem;
   }
   section.mtv-info {
+    padding: 1.5rem 1.5rem 0 1.5rem;
     text-align: left;
     clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
     @include mobile {
@@ -176,6 +177,21 @@ main.mtv-page {
         &:nth-child(3) {
           margin-left: 0.3rem;
         }
+      }
+    }
+    .yt-video {
+      margin: auto;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      text-align: center;
+      background: radial-gradient(
+        circle at bottom center,
+        color(primaryM) -25%,
+        transparent 65%
+      );
+
+      iframe {
+        border-radius: 10px;
       }
     }
     i.fa-heart {
